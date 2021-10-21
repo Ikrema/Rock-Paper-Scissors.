@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <h1>Rock paper scissors</h1>
+    <header>
+        <button onclick="choose('paper')"><img src="paper.png" alt=""></button>
+        <button onclick="choose('scissors')"><img src="scissors.png" alt=""></button>
+        <button onclick="choose('rock')"><img src="rock.png" alt=""></button>
+    </header>
+    <main>
+        <div class="playerSelection">
+            <p>User selection</p>
+        </div>
+        <div class="computerSelection">
+            <p>Computer selection</p>
+        </div>
+    </main>
+    <h1 id="result">Choose Rock, Paper, or Scissors</h1>
+</body>
+<script defer>
+    let resultH1 = document.querySelector("#result")
+    function choose(choice) {
+        let computerSelection = ['rock', 'paper', 'scissors'][Math.round(Math.random() * 2)]
+
+        let userSelectionElement = document.querySelector('.playerSelection');
+        let computerSelectionElement = document.querySelector(".computerSelection")
+        userSelectionElement.style.background = 'url(./' + choice + '.png) no-repeat center';
+        computerSelectionElement.style.background = 'url(./' + computerSelection + '.png) no-repeat center';
+        if (choice == computerSelection) {
+            resultH1.textContent = "Tie";
+            userSelectionElement.style.backgroundColor = "yellow"
+            computerSelectionElement.style.backgroundColor = "yellow"
+        } else if (choice == "rock" && computerSelection == "paper" || choice == "paper" && computerSelection == "scissors" || choice == "scissors" && computerSelection == "rock") {
+            userSelectionElement.style.backgroundColor = "red"
+            computerSelectionElement.style.backgroundColor = "green"
+            resultH1.textContent = "Computer Won!";
+        } else {
+            resultH1.textContent = "You win! ";
+            userSelectionElement.style.backgroundColor = "green"
+            computerSelectionElement.style.backgroundColor = "red"
+        }
+    }
+</script>
+
+</html>
